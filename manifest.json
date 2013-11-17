@@ -1,6 +1,6 @@
 {
-	"name": "Hello World",
+	"name": "No Spoilers",
 	"version": "1.0",
-	"description": "My first Chrome extension.",
+	"description": "Prevents the scores from being displayed before you watch the highlights of the games in video.nhl.com . The goal descriptions are also hidden from view when a game is being watched.",
 	"browser_action": { "default_icon": "icon.png"}
 }
