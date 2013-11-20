@@ -85,6 +85,12 @@ var j = "";
 
 (function()
 {
+
+  $('#teamMenu a[title="Chicago Blackhawks"] div').click(function(e){
+    e.preventDefault();
+    hideAllSpoilers();
+  })
+
   var proxied = _highlight.getHighlights;
   _highlight.getHighlights = function()
   {
@@ -158,7 +164,7 @@ var j = "";
   // $('[onclick="onClickNextHighlightDate(false)"]:contains("PREV")').removeAttr('onclick')
 })();
 
-window.addEventListener("click", hideAllSpoilers, false);
+// window.addEventListener("click", hideAllSpoilers, false);
  // onClickPlayNext;
 
 
@@ -179,6 +185,7 @@ window.addEventListener("click", hideAllSpoilers, false);
 
 
   // onClickNextHighlightDate
+
 
 
   // createGameRow
