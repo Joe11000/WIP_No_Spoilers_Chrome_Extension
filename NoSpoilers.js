@@ -68,15 +68,16 @@ var hideAllSpoilers = function()
 
 // need to strip finished game info from json
 var j = "";
-(function() {
-  // log all calls to setArray
-  var proxied = loadScoreboard;
+(function()
+{
+  // Any updates received (for entire duration of person visiting site) for the top of the screen will be covered.
+  var proxied1 = loadScoreboard;
   loadScoreboard = function(json_info)
   {
     j = json_info;
     j.refreshInterval = 5;              // remove for final draft
-    proxied.apply( this, arguments );
-    console.log("ran proxied loadScoreboard");
+    proxied1.apply( this, arguments );
+    // console.log("ran proxied loadScoreboard");
     top_ScoresCover();
     return true;
   };
@@ -91,15 +92,25 @@ var j = "";
     hideAllSpoilers();
   })
 
-  var proxied = _highlight.getHighlights;
+  var proxied2 = _highlight.getHighlights;
   _highlight.getHighlights = function()
   {
-    proxied.apply( this, arguments );
-    console.log("ran proxied getHighlights");
-    hideAllSpoilers();
+    proxied2.apply( this, arguments );
+    // console.log("ran proxied getHighlights");
+    bottom_HideScores();
     return true;
   };
 
+
+  // rehides the info on the middle right side of the screen when game is clicked on bottom of screen.
+  var proxied3 = _console.playVideo
+  _console.playVideo = function()
+  {
+    proxied3.apply( this, arguments );
+    // console.log("ran proxied _console.playVideo ");
+    middleRight_HideFeatureGameScore();
+    return true;
+  };
 
   // var proxied2 = onClickNextHighlightDate;
   // onClickNextHighlightDate = function()
@@ -132,7 +143,7 @@ var j = "";
   _highlight.getHighlightsCallBack = function()
   {
     proxied5.apply(this, arguments);
-    console.log("ran proxied getHighlishtsCallBack");
+    // console.log("ran proxied getHighlishtsCallBack");
     // hideAllSpoilers();
     bottom_HideScores();
     return true;
@@ -168,7 +179,6 @@ var j = "";
  // onClickPlayNext;
 
 
- $('[isselected="true"][tbltype="highlight_game"]') // select the current game being played from asking who is the current selected game in the middle bottom
 
 
   // proxied = ;
@@ -179,9 +189,6 @@ var j = "";
   //   return true;
   // };
 
-  $('#highlight_month_div .highlightgame_header[colspan]').each(function(e){
-   this.innerHTML="GAME ENDED";
-  });
 
 
   // onClickNextHighlightDate
@@ -189,3 +196,11 @@ var j = "";
 
 
   // createGameRow
+
+/////////////////////////////////////////// maybe bring back
+
+ // $('[isselected="true"][tbltype="highlight_game"]') // select the current game being played from asking who is the current selected game in the middle bottom
+
+ //  $('#highlight_month_div .highlightgame_header[colspan]').each(function(e){
+ //   this.innerHTML="GAME ENDED";
+ //  });
