@@ -1,6 +1,32 @@
 {
-	"name": "No Spoilers",
-	"version": "1.0",
-	"description": "Prevents the scores from being displayed before you watch the highlights of the games in video.nhl.com . The goal descriptions are also hidden from view when a game is being watched.",
-	"browser_action": { "default_icon": "icon.png"}
+  "name": "No NHL Spoilers",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "default_locale": "en",
+  "description": "Prevents showing any scores on screen and allows you to watch the highlights without giving away the final score.",
+  // "homepage_url": "http://video.nhl.com/videocenter",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "browser_action": {
+      "default_name": "NoSpoilers DefaultName",
+      "default_icon": "icons/icon16.png",
+      "default_popup": "src/browser_action/browser_action.html"
+  },
+  
+  "content_scripts":
+  [
+    {
+      "page": "src/bg/background.html",
+      "persistent": true
+      , "js": [ "js/jquery/jquery.js", "NoSpoilers.js" ]
+    }
+  ],
+
+  "permissions": [
+    "tabs",
+    "activeTab"
+  ]
 }

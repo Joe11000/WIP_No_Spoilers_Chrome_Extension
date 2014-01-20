@@ -1,8 +1,3 @@
-// var script = document.createElement('script');
-// script.src = 'http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.min.js';
-// script.type = 'text/javascript';
-// document.getElementsByTagName('head')[0].appendChild(script);
-
 var top_ScoresCover = function()
 {
   // top of the screen scores
@@ -83,9 +78,8 @@ var hideAllSpoilers = function()
   };
 
   var proxied5 = _highlight.getHighlightsCallBack;
-  _highlight.getHighlightsCallBack = function(a)
+  _highlight.getHighlightsCallBack = function()
   {
-    console.log(a)
     var return_val5 = proxied5.apply(this, arguments);
     bottom_HideScores();
     return return_val5;
