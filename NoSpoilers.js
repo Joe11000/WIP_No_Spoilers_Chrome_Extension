@@ -3,6 +3,34 @@
 // script.type = 'text/javascript';
 // document.getElementsByTagName('head')[0].appendChild(script);
 
+// var new_top_ScoresCover = function()
+// {
+//   // top of the screen scores
+//   $('.score').each(function(i)
+//   {
+//       if(this.innerHTML != "")
+//         this.innerHTML = "?";
+//   });
+
+//   games = $('#hsbGames .scrblk');
+
+//   games.each(function(){
+//     $(this).children().each(function(index, element){
+//       if ( index % 2 == 0 ) // default state
+//       {
+//          if( $(element).find('winner')  == true)
+//            $(element).removeClass('winner')
+//       }
+//       else // hover state
+//       {
+//         // console.log('default state here')
+
+//       }
+//     });
+//   });
+
+
+
 var top_ScoresCover = function()
 {
   // top of the screen scores
@@ -16,12 +44,17 @@ var top_ScoresCover = function()
     $(this).removeClass('winner');
   });
 
+  // $('#hsbGames .scrblk').each(function(){
+  //   $(this).child('.defaultState')
+  // });
+
   // remove the 'FINAL', 'FINAL OT', or 'FINAL SO' from the stats in each block up top
   $('#hsbGames .scrblk .bsc.final div').each(function(index, element)
   {
     if(element.innerHTML)
       element.innerHTML = "GAME ENDED"
   });
+
 };
 
 var bottom_HideScores = function()
@@ -66,8 +99,9 @@ var hideAllSpoilers = function()
 
   // Any updates received (for entire duration of person visiting site) for the top of the screen will be covered.
   var proxied1 = loadScoreboard;
-  loadScoreboard = function()
+  loadScoreboard = function(json_info)
   {
+    json_info.refreshInterval = 30;
     return_val1 = proxied1.apply( this, arguments );
     top_ScoresCover();
     return return_val1;
