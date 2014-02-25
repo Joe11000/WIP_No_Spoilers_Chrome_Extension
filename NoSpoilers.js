@@ -1,36 +1,3 @@
-// var script = document.createElement('script');
-// script.src = 'http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.min.js';
-// script.type = 'text/javascript';
-// document.getElementsByTagName('head')[0].appendChild(script);
-
-// var new_top_ScoresCover = function()
-// {
-//   // top of the screen scores
-//   $('.score').each(function(i)
-//   {
-//       if(this.innerHTML != "")
-//         this.innerHTML = "?";
-//   });
-
-//   games = $('#hsbGames .scrblk');
-
-//   games.each(function(){
-//     $(this).children().each(function(index, element){
-//       if ( index % 2 == 0 ) // default state
-//       {
-//          if( $(element).find('winner')  == true)
-//            $(element).removeClass('winner')
-//       }
-//       else // hover state
-//       {
-//         // console.log('default state here')
-
-//       }
-//     });
-//   });
-
-
-
 var top_ScoresCover = function()
 {
   // top of the screen scores
@@ -44,10 +11,6 @@ var top_ScoresCover = function()
     $(this).removeClass('winner');
   });
 
-  // $('#hsbGames .scrblk').each(function(){
-  //   $(this).child('.defaultState')
-  // });
-
   // remove the 'FINAL', 'FINAL OT', or 'FINAL SO' from the stats in each block up top
   $('#hsbGames .scrblk .bsc.final div').each(function(index, element)
   {
@@ -55,6 +18,7 @@ var top_ScoresCover = function()
       element.innerHTML = "GAME ENDED"
   });
 
+$('#hdrBoard .hoverState .bsc div').each(function(){ this.innerHTML = "GAME ENDED" })
 };
 
 var bottom_HideScores = function()
@@ -101,7 +65,7 @@ var hideAllSpoilers = function()
   var proxied1 = loadScoreboard;
   loadScoreboard = function(json_info)
   {
-    json_info.refreshInterval = 30;
+    // json_info.refreshInterval = 5;
     return_val1 = proxied1.apply( this, arguments );
     top_ScoresCover();
     return return_val1;
@@ -117,9 +81,8 @@ var hideAllSpoilers = function()
   };
 
   var proxied5 = _highlight.getHighlightsCallBack;
-  _highlight.getHighlightsCallBack = function(a)
+  _highlight.getHighlightsCallBack = function()
   {
-    console.log(a)
     var return_val5 = proxied5.apply(this, arguments);
     bottom_HideScores();
     return return_val5;
