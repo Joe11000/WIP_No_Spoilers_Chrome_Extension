@@ -72,19 +72,19 @@ var hideAllSpoilers = function()
   };
 
   // rehides the info on the middle right side of the screen when game is clicked on bottom of screen.
-  var proxied3 = _console.playVideo
+  var proxied2 = _console.playVideo
   _console.playVideo = function()
   {
-    return_val3 = proxied3.apply( this, arguments );
+    return_val2 = proxied2.apply( this, arguments );
     middleRight_HideFeatureGameScore();
-    return return_val3;
+    return return_val2;
   };
 
-  var proxied5 = _highlight.getHighlightsCallBack;
+  var proxied3 = _highlight.getHighlightsCallBack;
   _highlight.getHighlightsCallBack = function()
   {
-    var return_val5 = proxied5.apply(this, arguments);
+    var return_val3 = proxied3.apply(this, arguments);
     bottom_HideScores();
-    return return_val5;
+    return return_val3;
   }
 })();

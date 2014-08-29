@@ -1,0 +1,37 @@
+{
+  // Required
+  "name": "No Spoilers",
+  "version": "1.0.0",
+  "manifest_version": 2,
+
+  // Pick one
+  "browser_action":
+  {
+    "default_icon": { "19": "images/no_spoilers_19px.png" }
+  },
+
+  // Recommended
+  "description": "put articles/videos in your pocket to view later",
+
+// Allow for Ajax requests to my site.
+"permissions": [
+    "http://video.nhl.com.com/*",
+    "tabs",
+    "activeTab"
+  ],
+
+
+ "content_scripts": [
+    {
+      "matches": ["http://*/*"], // Allow these files to be loaded on every web page
+      "js": ["no_spoilers.js", popup.js", "jquery-1.10.2.js", "jquery-ui-1.10.4.min.js"]
+    }
+  ],
+
+  "icons":
+  {
+    "96": "images/no_spoilers_96px.png"
+  },
+
+  "author": "Joe Noonan"
+}
